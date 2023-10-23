@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_LINE (1024)
+
 
 struct Person;
 typedef struct Person* Position;
 typedef struct Person {
-	char ime[MAX_LINE];
-	char prezime[MAX_LINE];
+	char ime[50];
+	char prezime[50];
 	int godina_rodenja;
 	Position next;
 }person;
