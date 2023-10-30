@@ -1,2 +1,17 @@
 ﻿  Vj2a.c
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(108,3): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(120,18): warning C4047: 'function': 'char *' differs in levels of indirection from 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(120,18): warning C4024: 'strcpy': different types for formal and actual parameter 1
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(120,36): warning C4047: 'function': 'const char *' differs in levels of indirection from 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(120,36): warning C4024: 'strcpy': different types for formal and actual parameter 2
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(166,8): warning C4477: 'scanf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(171,18): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(171,18): warning C4024: 'strcpy': different types for formal and actual parameter 2
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(182,2): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(189,18): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(189,18): warning C4024: 'strcpy': different types for formal and actual parameter 2
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(227,18): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(227,18): warning C4024: 'strcpy': different types for formal and actual parameter 2
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(231,3): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\Vj2a.c(243,2): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
   Vjezba2.vcxproj -> C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba2\x64\Debug\Vjezba2.exe
