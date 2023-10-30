@@ -42,20 +42,20 @@ int menu(Position Head) {
 	Position P = NULL;
 	Position prev = NULL;
 	while (1) {
-		printf("Za unos na pocetak liste unesi 1 \nZa unos na kraj liste unesi 2 \nZa ispis liste unesi 3 \nZa trazenje osobe unesi 4 \nZa brisanje osobe unesi 5 \nZa unos nakon osobe unesi 6 \nZa unos prije osobe unesi 7 \nZa sortiranje liste unesi 8");
+		printf("Za unos na pocetak liste unesi 1 \nZa unos na kraj liste unesi 2 \nZa ispis liste unesi 3 \nZa trazenje osobe unesi 4 \nZa brisanje osobe unesi 5 \nZa unos nakon osobe unesi 6 \nZa unos prije osobe unesi 7 \nZa sortiranje liste unesi 8\n");
 		scanf("%d", &choice);
 
 		switch (choice) {
-			case '1':
+			case 1:
 				AddInFront(Head);
 				continue;
-			case '2':
+			case 2:
 				AddAtEnd(Head);
 				continue;
-			case '3':
+			case 3:
 				ListDisplay(Head);
 				continue;
-			case '4':
+			case 4:
 				P=findsurname(Head->next);
 				if (P) {
 					printperson(P);
@@ -64,10 +64,10 @@ int menu(Position Head) {
 					printf("Can't find wanted person in the list! ");
 				}
 				continue;
-			case '5':
+			case 5:
 				deletePerson(Head);
 				continue;
-			case '6':
+			case 6:
 				P = findsurname(Head->next);
 				if (P) {
 					InsertAfter(P);
@@ -76,7 +76,7 @@ int menu(Position Head) {
 					printf("Can't find wanted person in the list! ");
 				}
 				continue;
-			case '7':
+			case 7:
 				prev = findprev(Head);
 				if (prev) {
 					InsertAfter(prev);
@@ -85,7 +85,7 @@ int menu(Position Head) {
 					printf("Can't find wanted person in the list! ");
 				}
 				continue;
-			case '8':
+			case 8:
 				bubblesort(Head->next);
 				continue;
 		}
