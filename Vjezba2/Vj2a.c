@@ -26,7 +26,8 @@ int InsertAfter(Position P);
 int printperson(Position P);
 int menu(Position Head);
 int bubblesort(Position P);
-
+int udat(Position First);
+int idat();
 
 int main() {
 	person Head;
@@ -42,7 +43,7 @@ int menu(Position Head) {
 	Position P = NULL;
 	Position prev = NULL;
 	while (1) {
-		printf("Za unos na pocetak liste unesi 1 \nZa unos na kraj liste unesi 2 \nZa ispis liste unesi 3 \nZa trazenje osobe unesi 4 \nZa brisanje osobe unesi 5 \nZa unos nakon osobe unesi 6 \nZa unos prije osobe unesi 7 \nZa sortiranje liste unesi 8\n");
+		printf("Za unos na pocetak liste unesi 1 \nZa unos na kraj liste unesi 2 \nZa ispis liste unesi 3 \nZa trazenje osobe unesi 4 \nZa brisanje osobe unesi 5 \nZa unos nakon osobe unesi 6 \nZa unos prije osobe unesi 7 \nZa sortiranje liste unesi 8\nZa unos u datoteku unesi 9\nZa ispis iz datoteke unesi 10");
 		scanf("%d", &choice);
 
 		switch (choice) {
@@ -87,6 +88,12 @@ int menu(Position Head) {
 				continue;
 			case 8:
 				bubblesort(Head->next);
+				continue;
+			case 9:
+				udat(Head->next);
+				continue;
+			case 10:
+				idat();
 				continue;
 		}
 	}
@@ -166,18 +173,18 @@ char getsurname() {
 	scanf("%s", surname);
 	return surname;
 }
-Position findsurname(Position P) {
+Position findsurname(Position First) {
 	char surname[50] = { '0' };
 	strcpy (surname,getsurname());
 
 	do {
-		if (strcmp(P->prezime, surname) == 0) {
-			return P;
+		if (strcmp(First->prezime, surname) == 0) {
+			return First;
 		}
 		else {
-			P = P->next;
+			First = First->next;
 		}
-	} while (P != NULL);
+	} while (First != NULL);
 
 	return -1;
 }
@@ -248,44 +255,100 @@ int printperson(Position P) {
 	return EXIT_SUCCESS;
 }
 
-int bubblesort(Position P) {
+int bubblesort(Position First){
 	int brz = 0;
 	Position last = NULL;
-	
-	if (!P) {
+
+	if (!First) {
 		printf("Empty list! ");
 		return -1;
 	}
-	else if (!P->next) {
+	else if (!First->next) {
 		printf("One element in list, can't sort! ");
 		return -1;
 	}
 	do {
 		brz = 0;
-		while (P->next != last) {
-			if (strcmp(P->prezime, P->next->prezime) > 0) {
+		while (First->next != last) {
+			if (strcmp(First->prezime, First->next->prezime) > 0) {
 				char tempime[50];
 				char tempprezime[50];
 				int tempgodrod;
 
-				strcpy(tempime, P->ime);
-				strcpy(tempprezime, P->prezime);
-				tempgodrod = P->godina_rodenja;
+				strcpy(tempime, First->ime);
+				strcpy(tempprezime, First->prezime);
+				tempgodrod = First->godina_rodenja;
 
-				strcpy(P->ime, P->next->ime);
-				strcpy(P->prezime, P->next->prezime);
-				P->godina_rodenja = P->next->godina_rodenja;
+				strcpy(First->ime, First->next->ime);
+				strcpy(First->prezime, First->next->prezime);
+				First->godina_rodenja = First->next->godina_rodenja;
 
-				strcpy(P->next->ime, tempime);
-				strcpy(P->next->prezime, tempprezime);
-				P->next->godina_rodenja = tempgodrod;
+				strcpy(First->next->ime, tempime);
+				strcpy(First->next->prezime, tempprezime);
+				First->next->godina_rodenja = tempgodrod;
 
 				brz = 1;
 			}
-			P = P->next;
+			First = First->next;
 		}
-		last = P;
+		last = First;
 	} while (brz);
 
 	return EXIT_SUCCESS;
 }
+
+int udat(Position First) {
+	FILE* fp = NULL;
+	fp = fopen("osobe.txt", "w");
+	if (fp == NULL) {
+		printf("Greska u otvaranju datoteke! ");
+		return -1;
+	}
+	while (First != NULL) {
+		fprintf(fp, "%s\t %s\t %d\t\n", First->ime, First->prezime, First->godina_rodenja);
+		First = First->next;
+	}
+	fclose(fp);
+	return EXIT_SUCCESS;
+}
+
+int idat() {
+	char dat[30];
+	int brojac = 0;
+	struct Person Head;
+	Head.next = NULL;
+	Position p = &Head;
+	Position q = NULL;
+
+	printf("Unesite ime datoteke iz koje želite èitati listu! ");
+	scanf(" %s", &dat);
+	FILE* fp = NULL;
+	fp = fopen(dat, "r");
+	if (fp == NULL) {
+		printf("Greska u otvaranju datoteke! ");
+		return -1;
+	}
+	while (!feof(fp)) {
+		if (fgetc(fp) == '\n') {
+			brojac++;
+		}
+	}
+	rewind(fp);
+	if (brojac != 0) {
+		for (int i = 0; i < brojac; i++) {
+			q = (Position)malloc(sizeof(struct Person));
+			if (q == NULL) {
+				printf("Neuspjesna alokacija memorije! ");
+				return -1;
+			}
+			fscanf(fp, "%s %s %d", q->ime, q->prezime, &q->godina_rodenja);
+			q->next = p->next;
+			p->next = q;
+			p = p->next;
+		}
+		
+	}
+	fclose(fp);
+	return EXIT_SUCCESS;
+	}
+
