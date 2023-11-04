@@ -1,0 +1,8 @@
+﻿  Vjezba4.c
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(18,13): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(20,13): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(112,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(112,10): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(112,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'int *'
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\Vjezba4.c(112,10): warning C4313: 'printf': '%d' in format string conflicts with argument 2 of type 'int *'
+  Vjezba4.vcxproj -> C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba4\x64\Debug\Vjezba4.exe
