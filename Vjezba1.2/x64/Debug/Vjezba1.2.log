@@ -1,12 +1,3 @@
 ﻿  Vj1.2.c
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(29,24): warning C4020: 'showStudents': too many actual parameters
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(70,3): warning C4047: 'return': 'Student *' differs in levels of indirection from 'int'
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(83,53): warning C4029: declared formal parameter list different from definition
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,168): error C2440: 'function': cannot convert from 'double' to 'FILE *'
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,168): warning C4024: 'calculateRelativePoints': different types for formal and actual parameter 1
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,133): error C2198: 'calculateRelativePoints': too few arguments for call
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,176): error C2143: syntax error: missing ')' before ';'
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 3 has type 'double *'
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(85,10): warning C4313: 'printf': '%d' in format string conflicts with argument 3 of type 'double *'
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(90,39): warning C4028: formal parameter 1 different from declaration
-C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(90,47): warning C4029: declared formal parameter list different from definition
+C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\Vj1.2.c(97,10): warning C4476: 'printf' : unknown type field character '\t' in format specifier
+  Vjezba1.2.vcxproj -> C:\Users\Korisnik\Desktop\Fax\StrukturePodataka\Vjezba1.2\x64\Debug\Vjezba1.2.exe

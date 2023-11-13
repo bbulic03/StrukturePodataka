@@ -32,7 +32,7 @@ int main()
 		free(students);
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 int readNoRowsInFile()
@@ -88,11 +88,6 @@ student* allocateMemoryAndReadStudents(int noStudents)
 	return students;
 }
 
-double calculateRelativePoints(double points)
-{
-	return ((points / MAX_POINTS) * 100);
-}
-
 int showStudents(int noStudents, student* students)
 {
 	int counter = 0;
@@ -103,5 +98,11 @@ int showStudents(int noStudents, student* students)
 			students[counter].surname, students[counter].points, calculateRelativePoints(students[counter].points));
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
+
+double calculateRelativePoints(double points)
+{
+	return ((points / MAX_POINTS) * 100);
+}
+
