@@ -3,13 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 struct Directory {
     char name[50];
     struct Directory* subdirectories;
     struct Directory* next;
 };
-
 
 struct Directory* createDirectory(const char* name) {
     struct Directory* newDir = (struct Directory*)malloc(sizeof(struct Directory));
@@ -19,13 +17,11 @@ struct Directory* createDirectory(const char* name) {
     return newDir;
 }
 
-
 void addDirectory(struct Directory* currentDir, const char* name) {
     struct Directory* newDir = createDirectory(name);
     newDir->next = currentDir->subdirectories;
     currentDir->subdirectories = newDir;
 }
-
 
 void listDirectory(struct Directory* currentDir) {
     struct Directory* temp = currentDir->subdirectories;
@@ -35,7 +31,6 @@ void listDirectory(struct Directory* currentDir) {
         temp = temp->next;
     }
 }
-
 
 struct Directory* changeDirectory(struct Directory* currentDir, const char* name) {
     struct Directory* temp = currentDir->subdirectories;
@@ -50,7 +45,6 @@ struct Directory* changeDirectory(struct Directory* currentDir, const char* name
 }
 
 int main() {
-
     struct Directory* rootDir = createDirectory("root");
     struct Directory* currentDir = rootDir;
 
@@ -61,8 +55,9 @@ int main() {
         printf("\nMenu:\n");
         printf("1 - md (create a new directory)\n");
         printf("2 - cd dir (change directory)\n");
-        printf("3 - dir (list contents of the current directory)\n");
-        printf("4 - exit\n");
+        printf("3 - cd.. (move to the parent directory)\n");
+        printf("4 - dir (list contents of the current directory)\n");
+        printf("5 - exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -78,15 +73,24 @@ int main() {
             currentDir = changeDirectory(currentDir, dirName);
             break;
         case 3:
-            listDirectory(currentDir);
+            if (currentDir != rootDir) {
+                currentDir = rootDir;
+                printf("\nMoved to the root directory.\n");
+            }
+            else {
+                printf("\nAlready in the root directory.\n");
+            }
             break;
         case 4:
+            listDirectory(currentDir);
+            break;
+        case 5:
             printf("\nExiting the program.\n");
             break;
         default:
             printf("\nUnknown option. Please choose again.\n");
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     free(rootDir);
 
