@@ -1,205 +1,258 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#define NO_MEMORY_ERROR -1
 
-struct stablo;
-typedef struct stablo* poz;
-struct stablo
+typedef struct treeNode* treePointer;
+struct treeNode
 {
-    int el;
-    poz l;
-    poz d;
+	int value;
+	treePointer left;
+	treePointer right;
 };
+treePointer InsertElement(int, treePointer);
+treePointer AllocateNew(int);
+int InOrder(treePointer);
+int PostOrder(treePointer);
+int PreOrder(treePointer);
+int LevelOrder(treePointer);
+int Height(treePointer);
+int CurrentLevel(treePointer, int);
+treePointer DeleteElement(int, treePointer);
+treePointer FindMin(treePointer);
+treePointer FindElement(int, treePointer);
 
-void ispisOrder(poz current);
-void ispisPostorder(poz current);
-void ispisPreorder(poz current);
-int levelOrder(poz current);
-int Height(poz current);
-int currentLevel(poz current, int lvl);
-poz unos(poz current, int x);
-poz brisi(poz current, int x);
-poz traziNajmanji(poz current);
-poz traziNajveci(poz current);
-poz trazi(poz current, int x);
-
-int main(void)
+int main()
 {
-    poz root = NULL;
-    int n = 0, i = 0, x = 0;
+	treePointer root = NULL;
+	int choice = 0, element;
+	treePointer temp = NULL;
 
-    printf("Unesite broj elemenata stabla: ");
-    scanf("%d", &n);
-    printf("Unesite elemente:\n");
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", &x);
-        root = unos(root, x);
-    }
-    printf("\nIspis inorder:\n");
-    ispisOrder(root);
-    printf("\nIspis postorder:\n");
-    ispisPostorder(root);
-    printf("\nIspis preorder:\n");
-    ispisPreorder(root);
-    printf("\nIspis level order:\n");
-    levelOrder(root);
+	while (1) {
+		printf("----------\n");
+		printf("Odaberi:\n");
+		printf("1 - unos novog elementa u stablo\n");
+		printf("2 - ispis inorder stabla\n");
+		printf("3 - ispis postorder stabla\n");
+		printf("4 - ispis preorder stabla\n");
+		printf("5 - ispis level order stabla\n");
+		printf("6 - trazenje elementa stabla\n");
+		printf("7 - brisanje elementa iz stabla\n");
+		printf("8 - izlaz\n");
+		printf("-----\n");
+		printf("> ");
+		scanf("%d", &choice);
+		printf("-----\n");
+		switch (choice)
+		{
+		case 1:
+			printf("Unesi element koji zelis unijeti u stablo: ");
+			scanf("%d", &element);
+			root = InsertElement(element, root);
+			if (root == NULL)
+				return NO_MEMORY_ERROR;
+			break;
+		case 2:
+			if (root == NULL)
+				printf("Stablo je prazno.\n");
+			else {
+				printf("Ispis InOrder: ");
+				InOrder(root);
+			}
+			break;
+		case 3:
+			if (root == NULL)
+				printf("Stablo je prazno.\n");
+			else {
+				printf("Ispis PostOrder: ");
+				PostOrder(root);
+			}
+			break;
+		case 4:
+			if (root == NULL)
+				printf("Stablo je prazno.\n");
+			else {
+				printf("Ispis PreOrder: ");
+				PreOrder(root);
+			}
+			break;
+		case 5:
+			if (root == NULL)
+				printf("Stablo je prazno.\n");
+			else {
+				printf("Ispis LevelOrder: ");
+				LevelOrder(root);
+			}
+			break;
+		case 6:
+			printf("Unesi element koji trazis u stablu: ");
+			scanf("%d", &element);
+			temp = FindElement(element, root);
+			if (temp == NULL)
+				printf("Element %d se ne nalazi u stablu!\n", element);
+			else
+				printf("Element %d se nalazi na adresi %p\n", temp->value, temp);
+			break;
+		case 7:
+			printf("Unesi element koji brises iz stabla: ");
+			scanf("%d", &element);
+			root = DeleteElement(element, root);
+			break;
+		case 8:
+			return 0;
+		}
+		printf("\n");
+	}
 
-    printf("\nUnesite clanove koje zelite izbrisati(ili 0 za kraj)\n");
-    while (1)
-    {
-        scanf("%d", &x);
-        if (x == 0)
-            break;
-        root = brisi(root, x);
-        ispisOrder(root);
-        printf("\n");
-        if (root == NULL)
-            break;
-    }
-
-    ispisOrder(root);
-
-
-
-    return 0;
+	return 0;
 }
-void ispisOrder(poz current)
+
+treePointer AllocateNew(int element)
 {
-    if (current == NULL)
-        return;
-    ispisOrder(current->l);
-    printf("%d ", current->el);
-    ispisOrder(current->d);
-    return;
+	treePointer newNode = malloc(sizeof(struct treeNode));
+	if (newNode == NULL) {
+		printf("Nije moguce alocirati memoriju!");
+		return NULL;
+	}
+	newNode->value = element;
+	newNode->left = NULL;
+	newNode->right = NULL;
+	return newNode;
 }
 
-poz unos(poz current, int x)
+treePointer InsertElement(int element, treePointer root)
 {
-    poz q = NULL;
-    if (current == NULL)
-    {
-        q = (poz)malloc(sizeof(struct stablo));
-        q->el = x;
-        q->l = NULL;
-        q->d = NULL;
-        return q;
-    }
-    else if (x < current->el)
-        current->l = unos(current->l, x);
-    else if (x > current->el)
-        current->d = unos(current->d, x);
-    return current;
+	if (root == NULL) {
+		return AllocateNew(element);
+	}
+	if (root->value <= element) {
+		root->right = InsertElement(element, root->right);
+	}
+	else if (root->value > element) {
+		root->left = InsertElement(element, root->left);
+	}
+	return root;
 }
 
-poz brisi(poz current, int x)
+int InOrder(treePointer root)
 {
-    poz t = NULL;
-    if (current == NULL)
-        printf("Nema tog elementa!\n");
-    else if (x < current->el)
-        current->l = brisi(current->l, x);
-    else if (x > current->el)
-        current->d = brisi(current->d, x);
-    else if (current->l != NULL && current->d != NULL)
-    {
-        t = traziNajmanji(current->d);
-        current->el = t->el;
-        current->d = brisi(current->d, current->el);
-    }
-    else
-    {
-        t = current;
-        if (current->l == NULL)
-            current = current->d;
-        else
-            current = current->l;
-        free(t);
-    }
-    return current;
+	if (root == NULL) {
+		return 0;
+	}
+	InOrder(root->left);
+	printf("%d ", root->value);
+	InOrder(root->right);
+	return 0;
 }
 
-poz traziNajmanji(poz current)
+int PostOrder(treePointer root)
 {
-    while (current->l != NULL)
-        current = current->l;
-    return current;
+	if (root == NULL) {
+		return 0;
+	}
+	PostOrder(root->left);
+	PostOrder(root->right);
+	printf("%d ", root->value);
+	return 0;
 }
 
-poz traziNajveci(poz current)
+int PreOrder(treePointer root)
 {
-    while (current->d != NULL)
-        current = current->d;
-    return current;
+	if (root == NULL) {
+		return 0;
+	}
+	printf("%d ", root->value);
+	PreOrder(root->left);
+	PreOrder(root->right);
+	return 0;
 }
 
-void ispisPostorder(poz current)
+int LevelOrder(treePointer root)
 {
-    if (current == NULL)
-        return;
-    ispisPostorder(current->l);
-    ispisPostorder(current->d);
-    printf("%d ", current->el);
+	int h = Height(root);
+	int i;
+	for (i = 1; i <= h; i++) {
+		CurrentLevel(root, i);
+	}
+	return 0;
 }
 
-void ispisPreorder(poz current)
+int CurrentLevel(treePointer root, int level)
 {
-    if (current == NULL)
-        return;
-    printf("%d ", current->el);
-    ispisPreorder(current->l);
-    ispisPreorder(current->d);
+	if (root == NULL) {
+		return 0;
+	}
+	if (level == 1) {
+		printf("%d ", root->value);
+		return 0;
+	}
+	CurrentLevel(root->left, level - 1);
+	CurrentLevel(root->right, level - 1);
+	return 0;
 }
 
-poz trazi(poz current, int x)
+int Height(treePointer root)
 {
-    if (current == NULL)
-        return NULL;
-    else if (x < current->el)
-        return trazi(current->l, x);
-    else if (x > current->el)
-        return trazi(current->d, x);
-    return current;
+	if (root == NULL)
+		return 0;
+
+	int lheight = Height(root->left);
+	int rheight = Height(root->right);
+
+	if (lheight > rheight)
+		return (lheight + 1);
+	else
+		return (rheight + 1);
 }
 
-int levelOrder(poz current) {
-    if (current == NULL) {
-        return 0;
-    }
-
-    int h = Height(current);
-    for (int i = 0; i < h; i++)
-        currentLevel(current, i);
-
-    return 1;
+treePointer DeleteElement(int element, treePointer root)
+{
+	treePointer temp;
+	if (root == NULL) {
+		return root;
+	}
+	else if (element < root->value) {
+		root->left = DeleteElement(element, root->left);
+	}
+	else if (element > root->value) {
+		root->right = DeleteElement(element, root->right);
+	}
+	else {
+		if (root->left == NULL)
+		{
+			temp = root->right;
+			free(root);
+			return temp;
+		}
+		else if (root->right == NULL)
+		{
+			temp = root->left;
+			free(root);
+			return temp;
+		}
+		temp = FindMin(root->right);
+		root->value = temp->value;
+		root->right = DeleteElement(temp->value, root->right);
+	}
+	return root;
 }
 
-int Height(poz current) {
-
-    if (current == NULL)
-        return 0;
-    else {
-        int LHeight = Height(current->l);
-        int RHeight = Height(current->d);
-
-        if (LHeight > RHeight)
-            return (LHeight + 1);
-        else
-            return (RHeight + 1);
-    }
+treePointer FindMin(treePointer root)
+{
+	while (root->left)
+		root = root->left;
+	return root;
 }
 
-int currentLevel(poz current, int lvl) {
+treePointer FindElement(int element, treePointer root)
+{
+	if (root == NULL)
+		return NULL;
 
-    if (current == NULL)
-        return 0;
-
-    if (lvl == 1) {
-        printf(" %d ", current->el);
-    }
-    else if (lvl > 1) {
-        currentLevel(current->l, lvl - 1);
-        currentLevel(current->d, lvl - 1);
-    }
-
-    return 1;
+	if (element == root->value)
+		return root;
+	else if (element < root->value)
+		return FindElement(element, root->left);
+	else
+		return FindElement(element, root->right);
 }
