@@ -1,0 +1,4 @@
+Hrvatska hrv.txt
+Spanjolska spa.txt
+Austrija aus.txt
+Rumunjska rom.txt
