@@ -1,0 +1,11 @@
+﻿  knj.c
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(402,3): warning C4033: 'writeBooksToFile' must return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(425,3): warning C4033: 'readBooksFromFile' must return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(448,3): warning C4033: 'writeUsersToFile' must return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(471,3): warning C4033: 'readUsersFromFile' must return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(415): warning C4715: 'writeBooksToFile': not all control paths return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(438): warning C4715: 'readBooksFromFile': not all control paths return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(461): warning C4715: 'writeUsersToFile': not all control paths return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(502): warning C4715: 'findUser': not all control paths return a value
+C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\knj.c(484): warning C4715: 'readUsersFromFile': not all control paths return a value
+  Knjiz.vcxproj -> C:\Users\Korisnik\Desktop\Fax\Strukture podataka teorija\Knjiz\x64\Debug\Knjiz.exe
